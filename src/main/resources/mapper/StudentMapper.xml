@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--Student getStudentBySID(@Param("SID") String SID);-->
+
+<!--void updateStudent(Student student);-->
+
+<!--void deteleStudentBySID(String SID);-->
+
+<!--void addStudent(Student student);-->
+
+<!--List<Student> findAllStudent();-->
+<mapper namespace="com.ysk.addressbook.dao.StudentDao">
+    <select id="getStudentBySID" resultType="com.ysk.addressbook.entity.Student">
+    SELECT * FROM student where sid=#{sid}
+    </select>
+
+    <update id="updateStudent">
+        update student
+        set name=#{name},sex=#{sex},address=#{address},hobby=#{hobby},favorite_people=#{favoritePeople},favorite_food=#{favoriteFood},favorite_fruit=#{favoriteFruit},favorite_words=#{favoriteWords},qq=#{qq},tel=#{tel},email=#{email}
+        <if test='classesNum!=""'>
+            ,classes_num=#{classesNum}
+        </if>
+        where sid=#{sid}
+    </update>
+
+    <delete id="deleteStudentBySID">
+    delete from student where sid=#{sid}
+    </delete>
+
+   <insert id="addStudent">
+    insert into student(id,sid,name,sex,classes_num,header_URI) values(null,#{sid},#{name},#{sex},#{classesNum},#{headerURI})
+   </insert>
+
+    <select id="findAllStudent" resultType="com.ysk.addressbook.entity.Student">
+        SELECT * FROM student ORDER BY sid ASC
+    </select>
+
+
+
+</mapper>
+

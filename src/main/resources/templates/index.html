@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>同学录系统首页</title>
+    <meta name="viewport"
+          content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;"/>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/common.css"/>
+
+</head>
+<body/>
+<!--<div class="container">-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+
+<div class="col-md-12">
+    <div class="col-md-6 col-md-offset-3">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="http://via.placeholder.com/700x200" alt="First slide" style="width: 100%">
+                </div>
+                <div class="item">
+                    <img src="http://via.placeholder.com/700x200" alt="Second slide" style="width: 100%">
+                </div>
+                <div class="item">
+                    <img src="http://via.placeholder.com/700x200" alt="Third slide" style="width: 100%">
+                </div>
+            </div>
+
+            <a class="carousel-control left" href="#myCarousel"
+               data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel"
+               data-slide="next">&rsaquo;</a>
+        </div>
+        <hr>
+        <marquee>
+            <scan>公告:</scan>
+            <scan th:text="${notice}">正在加载中...</scan>
+        </marquee>
+        <hr>
+    </div>
+
+    <!--/*@thymesVar id="classess" type="java.util.List"*/-->
+    <div class="col-md-6 col-md-offset-3">
+        <div th:each="classes,classesStat:${classess} ">
+            <div th:if="${classesStat.index%3==0}">
+                <div class="col-md-2">
+                    <div align="center">
+                        <a th:href="@{'classes-detail?classesNum='+${classes.getClassesNum()}}" target="_blank">
+                            <div>
+                                <img src="img/header02.jpg" th:src="@{${classes.getHeaderURI()}}" th:alt="${'班级头像'}"
+                                     th:class="${'img-circle img-responsive'}">
+                            </div>
+                            <br>
+                            <div>
+                                <scan th:text="${classes.getClassesName()}">1419班</scan>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${classesStat.index%3!=0}">
+
+                <div class="col-md-2 col-md-offset-3">
+                    <div align="center">
+                        <a th:href="@{'classes-detail?classesNum='+${classes.getClassesNum()}}" target="_blank">
+                            <div>
+                                <img src="img/header02.jpg" th:src="@{${classes.getHeaderURI()}}" th:alt="${'班级头像'}"
+                                     th:class="${'img-circle img-responsive'}">
+                            </div>
+                            <br>
+                            <div>
+                                <scan th:text="${classes.getClassesName()}">1419班</scan>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <ss th:if="${classesStat.count}==${classesStat.size}">
+          <div th:if=" ${classesStat.index%3==0}">
+                <div class="col-md-2 col-md-offset-3">
+                    <div align="center">
+                        <a th:href="@{'admin/classes'}" target="_blank">
+                            <div>
+                                <img src="img/plus.png" th:src="@{'img/plus.png'}" th:alt="${'班级管理'}"
+                                     th:class="${'img-circle img-responsive'}">
+                            </div>
+                            <br>
+                            <div>
+                                <scan >班级管理</scan>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+        </div>
+        <div th:if="${classesStat.index%3!=0}">
+            <div class="col-md-2">
+                <div align="center">
+                    <a th:href="@{'classes-detail?classesNum='+${classes.getClassesNum()}}" target="_blank">
+                        <div>
+                            <img src="img/plus.png" th:src="@{'img/plus.png'}" th:alt="${'添加班级'}"
+                                 th:class="${'img-circle img-responsive'}">
+                        </div>
+                        <br>
+                        <div>
+                            <scan >添加班级</scan>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </ss>
+    </div>
+</div>
+
+
+<!--<li class="list-group-item" th:each="person:${classess}">-->
+<!--<span th:text="${person.classesNum}">111</span>-->
+<!--<span th:text="${person.classesName}">111</span>-->
+<!--<button class="btn" th:onclick="'getName(\''+${person.headerURI}+'\')'">获得名字</button>-->
+<!--</li>-->
+
+</div>
+
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<script src="js/index.js"></script>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

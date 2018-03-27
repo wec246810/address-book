@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人详情页面</title>
+    <meta name="viewport" content="width=device-width,user-scalable=yes,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!--表格编辑-->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link href="css/common.css" rel="stylesheet"/>
+    <script src="/js/common.js"></script>
+</head>
+<body/>
+
+<div class="container">
+    <ss th:if="${studentPosition.getPosition()>=-1}">
+    <ss th:if="${studentPosition.getPosition()!=-1}">
+        <div class="col-md-1" align="center" style="height: 100%">
+            <a th:href="@{'/student-detail?SID='+${studentPosition.getPerStudentSid()}}" >
+                <img src="/img/left_arrow.jpg"/>
+            </a>
+
+        </div>
+    </ss>
+    </ss>
+
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2" align="center" >
+            <div>
+                <img src="/img/header01.jpg" th:src="@{${student.getHeaderURI()}}" class="img-circle img-responsive">
+            </div>
+            <br>
+            <div>
+            <table class="table table-striped table-hover table-responsive" >
+                <tr class="active">
+                    <td>学号:</td>
+                    <!--th:placeholder="${student.getSid()!=''?student.getSid():'填写内容'}"-->
+                    <td><input type="text" placeholder="填写内容" placeholder="填写内容" th:value="${student.getSid()}"   class="no-border no-padding" style="outline: none" id="student-sid"  disabled="disabled"></td>
+                </tr>
+                <tr class="success">
+                    <td >姓名:</td>
+                    <!--th:placeholder="${student.getName() !=''? student.getName():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getName()}"   class="no-border no-padding myinfo" style="outline: none" id="student-name"  disabled="disabled"></td>
+                </tr>
+                <tr class="info">
+                    <td>性别:</td>
+                    <!--th:placeholder="${student.getSex()!=''? student.getSex():'填写内容' } "-->
+                    <td><input type="text" placeholder="填写内容" th:value="${student.getSex()}"   class="no-border no-padding myinfo" style="outline: none" id="student-sex"  disabled="disabled"></td>
+                </tr>
+                <tr class="warning">
+                    <td>年龄:</td>
+                    <!--th:placeholder="${student.getAge()!=''? student.getAge():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getAge()}"   class="no-border no-padding myinfo" style="outline: none" id="student-age"  disabled="disabled"></td>
+                </tr>
+                <tr class="success">
+                    <td>爱好:</td>
+                    <!--th:placeholder="${student.getHobby()!=''? student.getHobby():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getHobby()}"   class="no-border no-padding myinfo" style="outline: none" id="student-hobby"  disabled="disabled"></td>
+                </tr>
+                <tr class="danger">
+                    <td>最喜欢的人:</td>
+                    <!--th:placeholder="${student.getFavoritePeople()!=''? student.getFavoritePeople():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getFavoritePeople()}"   class="no-border no-padding myinfo" style="outline: none" id="student-favoritePeople"  disabled="disabled"></td>
+                </tr>
+                <tr class="active">
+                    <td>最喜欢的食物:</td>
+                    <!--th:placeholder="${student.getTel()!=''? student.getTel():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getFavoriteFood()}"   class="no-border no-padding myinfo" style="outline: none" id="student-favoriteFood"  disabled="disabled"></td>
+                </tr>
+                <tr class="success">
+                    <td>最喜欢的水果:</td>
+                    <!--th:placeholder="${student.getFavoriteFruit()!=''? student.getFavoriteFruit():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getFavoriteFruit()}"   class="no-border no-padding myinfo"  style="outline: none" id="student-favoriteFruit"  disabled="disabled"></td>
+                </tr>
+                <tr class="info">
+                    <td>最喜欢的一句话:</td>
+                    <!--th:placeholder="${student.getFavoriteWords()!=''? student.getFavoriteWords():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getFavoriteWords()}"   class="no-border no-padding myinfo" style="outline: none" id="student-favoriteWords"  disabled="disabled"></td>
+                </tr>
+                <tr class="warning">
+                    <td>qq:</td>
+                    <!--th:placeholder="${student.getQq()!=''? student.getQq():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getQq()}"   class="no-border no-padding myinfo" style="outline: none" id="student-qq"  disabled="disabled"></td>
+                </tr>
+                <tr class="danger">
+                    <td>tel:</td>
+                    <!--th:placeholder="${student.getTel()!=''? student.getTel():'填写内容'}"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getTel()}"   class="no-border no-padding myinfo" style="outline: none" id="student-tel"  disabled="disabled"></td>
+                </tr>
+                <tr class="info">
+                    <td>邮箱:</td>
+                    <!--th:placeholder="${student.getEmail()!=''? student.getEmail():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getEmail()}"   class="no-border no-padding myinfo" style="outline: none" id="student-email"  disabled="disabled"></td>
+                </tr>
+                <tr class="warning">
+                    <td>家庭住址:</td>
+                    <!--th:placeholder="${student.getAddress()!=''? student.getAddress():'填写内容' }"-->
+                    <td><input type="text" placeholder="填写内容" th:value="${student.getAddress()}"   class="no-border no-padding myinfo" style="outline: none" id="student-address"  disabled="disabled"></td>
+                </tr>
+            </table>
+            </div>
+            <a href="javascript:void(0)" onclick="saveStudentInfo()">保存</a>
+            <a href="javascript:void(0)" onclick="editStudentInfo()">编辑</a>
+            <br>
+        </div>
+        <ss th:if="${studentPosition.getPosition()>=-1}">
+        <ss th:if="${studentPosition.getPosition()!=1}">
+            <div class="col-md-1" align="center">
+                <a th:href="@{'/student-detail?SID='+${studentPosition.getNextStudentSid()}}">
+                    <img src="/img/right_arrow.jpg"  />
+                </a>
+
+            </div>
+        </ss>
+        </ss>
+
+    </div>
+</div>
+
+<!--<span>学号:</span><hr>-->
+<!--<div>-->
+    <!--<span>姓名:</span>-->
+    <!--<span th:text="${student.getName()}">加载中...</span>-->
+<!--</div><hr>-->
+<!--<span>性别:</span><hr>-->
+<!--<span>爱好:</span><hr>-->
+<!--<span>职务:</span><hr>-->
+<!--<span>最喜欢的人:</span><hr>-->
+<!--<span>最喜欢的食物:</span><hr>-->
+<!--<span>最喜欢的水果:</span><hr>-->
+<!--<span>最喜欢的一句话:</span><hr>-->
+<!--<span>qq:</span><hr>-->
+<!--<span>tel:</span><hr>-->
+<!--<span>邮箱:</span><hr>-->
+
+</body>
+</html>

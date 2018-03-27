@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ysk.addressbook.dao.UserDao">
+    <!--<insert id="addSendRecord" parameterType="com.ysk.entity.SendRecord">-->
+    <!--INSERT send_record (id,username,content,create_time)VALUES (null,#{userName},#{content},#{createTime})-->
+    <!--</insert>-->
+     <resultMap id="user" type="com.ysk.addressbook.entity.User">
+         <id column="username" property="username"/>
+         <result column="password" property="password"/>
+         <!-- 订单关联用户 -->
+         <collection property="sysRole" javaType="com.ysk.addressbook.entity.SysRole">
+             <id column="id" property="id"/>
+             <result column="role_level" property="roleLevel"/>
+             <result column="name" property="name"/>
+             <result column="description" property="description"/>
+         </collection>
+     </resultMap>
+
+    <select id="getUserByUserName" resultType="com.ysk.addressbook.entity.User">
+        SELECT * FROM user where username=#{username};
+    </select>
+
+    <delete id="deteleUserById" >
+    DELETE from user where userId=#{userId}
+    </delete>
+
+    <update id="updateUser" parameterType="com.ysk.addressbook.entity.User">
+    UPDATE user set username=#{userId},username=#{username},password=#{password},permission=#{permission}
+    </update>
+
+    <insert id="addUser" >
+    INSERT USER(userId,username,password,permission) values(null,#{username},#{password},#{permission})
+    </insert>
+
+    <select id="findAllUser" resultType="com.ysk.addressbook.entity.User">
+        SELECT * FROM user where username=#{username};
+    </select>
+
+
+</mapper>
+

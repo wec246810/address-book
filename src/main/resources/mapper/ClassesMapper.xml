@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysk.addressbook.dao.ClassesDao">
+
+    <select id="findAllClasses" resultType="com.ysk.addressbook.entity.Classes">
+        SELECT * FROM classes
+    </select>
+
+    <select id="getOneClasses" resultType="com.ysk.addressbook.entity.Classes">
+        SELECT * FROM classes where classes_num=#{classNum}
+    </select>
+
+    <insert id="addOneClasses">
+        INSERT INTO classes VALUES(null,#{classesName},#{classesNum},#{headerURI})
+    </insert>
+
+    <update id="updateOneClasses" parameterType="com.ysk.addressbook.entity.Classes">
+        UPDATE classes set classes_name=#{classesName},classes_num=#{classesNum},header_URI=#{headerURI}
+    </update>
+
+    <delete id="deleteOneClasses" >
+        DELETE FROM classes where classes_num=#{classNum}
+    </delete>
+
+    <select id="getClassesByClassesNum" resultType="com.ysk.addressbook.entity.Student">
+        SELECT * FROM student where classes_num=#{classesNum} ORDER BY sid ASC
+    </select>
+
+</mapper>

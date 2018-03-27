@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ysk.addressbook.dao.NoticeDao">
+    <!--<insert id="addSendRecord" parameterType="com.ysk.entity.SendRecord">-->
+    <!--INSERT send_record (id,username,content,create_time)VALUES (null,#{userName},#{content},#{createTime})-->
+    <!--</insert>-->
+
+    <select id="getMyNotice" resultType="String">
+        SELECT content FROM notice
+    </select>
+
+
+</mapper>
+
