@@ -19,25 +19,24 @@ public class UserController {
     private StudentService studentService;
 
     @GetMapping("login")
-    public void userLogin(){
+    public void userLogin() {
 
     }
 
     @PostMapping("update-info")
     @ResponseBody
-    public ResultEntity updateMyInfo(@RequestBody  Student student){
+    public ResultEntity updateMyInfo(@RequestBody Student student) {
         studentService.updateStudent(student);
-        return ResultEntity.SUCCESS ;
+        return ResultEntity.SUCCESS;
     }
 
     @GetMapping("user-detail")
-    public ModelAndView studentDetail(@RequestParam("SID") String SID){
-        Student student=studentService.getStudentBySID(SID);
-        ModelAndView studentDetailMV=new ModelAndView("user-detail");
-        studentDetailMV.addObject("student",student);
+    public ModelAndView studentDetail(@RequestParam("SID") String SID) {
+        Student student = studentService.getStudentBySID(SID);
+        ModelAndView studentDetailMV = new ModelAndView("user-detail");
+        studentDetailMV.addObject("student", student);
         return studentDetailMV;
     }
-
 
 
 }

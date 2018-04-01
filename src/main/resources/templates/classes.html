@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>管理员页面</title>
+    <title>班级管理页面</title>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/common.css" />
@@ -14,37 +14,39 @@
 
 <div class="container">
     <div align="center">
-        <h2 th:text="${classesNum}+'班学生管理'">学生管理</h2>
+        <h2>班级管理</h2>
     </div>
     <div class="row">
         <table class="table table-striped  table-bordered table-hover table-responsive" >
             <tr align="center">
-                <th style="    text-align: center;">学号</th>
-                <th style="    text-align: center;">姓名</th>
-                <th style="    text-align: center;">性别</th>
-                <th style="    text-align: center;">操作</th>
+                <th style="text-align: center;">#</th>
+                <th style="text-align: center;">班级</th>
+                <th style="text-align: center;">班长学号</th>
+                <th style="text-align: center;">操作</th>
             </tr>
-            <student th:each="student:${students}" >
+            <classes th:each="classes:${classess}" >
                 <!---->
-                <tr style="text-align: center;" th:id="@{'infoTable'+${student.getSid()}}">
-                    <td style="vertical-align: middle;" th:text="${student.getSid()}" th:id="@{'sid'+${student.getSid()}}">1419</td>
-                    <td  style="vertical-align: middle;" th:text="${student.getName()}" th:id="@{'name'+${student.getSid()}}">1419班</td>
-                    <td style="vertical-align: middle;" th:text="${student.getSex()}" th:id="@{'sex'+${student.getSid()}}">杨尚昆</td>
+                <tr style="text-align: center;" th:id="@{'infoTable'+${classes.getClassesNum()}}">
+                    <td style="vertical-align: middle;" th:text="${classes.getClassesNum()}" th:id="@{'classesNum'+${classes.getClassesNum()}}">1419</td>
+                    <td  style="vertical-align: middle;" th:text="${classes.getClassesName()}" th:id="@{'classesName'+${classes.getClassesName()}}">1419班</td>
+                    <td style="vertical-align: middle;" th:text="${classes.getMonitorID()}" th:id="@{'monitorID'+${classes.getMonitorID()}}">1462141947</td>
+                    <!--<td style="vertical-align: middle;" th:text="${student.getSex()}" th:id="@{'sex'+${student.getSid()}}">杨尚昆</td>-->
+
                     <td style="vertical-align: middle; width: 400px" id="infoTableOp">
-                        <a  class="btn btn-primary" href="javascript:void(0)" th:onclick="'javascript:editStudent(\''+@{${student.getSid()}}+'\');'">编辑</a>
+                        <a  class="btn btn-primary" href="javascript:void(0)" th:onclick="'javascript:editClasses(\''+@{${classes.getClassesNum()}}+'\');'">编辑</a>
                         &nbsp; &nbsp;
-                        <a class="btn btn-success" href="javascript:void(0)" th:onclick="'javascript:saveStudent(\''+@{${student.getSid()}}+'\');'">保存</a>
+                        <a class="btn btn-success" href="javascript:void(0)" th:onclick="'javascript:saveClasses(\''+@{${classes.getClassesNum()}}+'\');'">保存</a>
                         &nbsp; &nbsp;
-                        <a class="btn btn-danger" href="javascript:void(0)" th:onclick="'javascript:deleteStudent(\''+@{${student.getSid()}}+'\');'">删除</a>
+                        <a class="btn btn-danger" href="javascript:void(0)" th:onclick="'javascript:deleteClasses(\''+@{${classes.getClassesNum()}}+'\');'">删除</a>
                     </td>
                 </tr>
-            </student>
+            </classes>
             <tr align="center" >
                 <td id="addsid" contenteditable="true"></td>
                 <td id="addname" contenteditable="true"></td>
                 <td id="addsex" contenteditable="true"></td>
                 <td id="">
-                    <a class="btn btn-primary" href="javascript:void(0)" th:onclick="'javascript:addStudent(\''+@{${classesNum}}+'\');'">增加</a>
+                    <a class="btn btn-primary" href="javascript:void(0)" th:onclick="'javascript:addClasses(\''+@{${}}+'\');'">增加</a>
                 </td>
             </tr>
         </table>
@@ -63,7 +65,7 @@
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
             <div class="modal-body" id="motai">
-//                加载中...
+                //                加载中...
             </div>
             <div class="modal-footer">
                 <button  class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -76,11 +78,4 @@
 
 <script src="/js/admin.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function () {
-        $("#savemy").click(function () {
-            window.location.reload();
-        });
-    })
-</script>
 </html>

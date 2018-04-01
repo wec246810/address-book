@@ -13,9 +13,9 @@ public interface ClassesDao {
 
     void updateOneClasses(Classes classes);
 
-    void deleteOneClasses(String classesNum);
+    void deleteOneClasses(@Param("classesNum") String classesNum);
 
-    Classes getOneClasses(String classesNum);
+    Classes getOneClasses(@Param("classesNum") String classesNum);
 
     List<Student> getClassesByClassesNum(@Param("classesNum") String classesNum);
 }

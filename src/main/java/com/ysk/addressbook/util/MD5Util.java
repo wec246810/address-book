@@ -3,7 +3,7 @@ package com.ysk.addressbook.util;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-public class ToolUtil {
+public class MD5Util {
     public static String getMD5(String str) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

@@ -11,7 +11,7 @@
  Target Server Version : 50619
  File Encoding         : 65001
 
- Date: 01/04/2018 18:42:44
+ Date: 02/04/2018 07:54:12
 */
 
 SET NAMES utf8mb4;
@@ -25,8 +25,8 @@ CREATE TABLE `classes`  (
   `classes_id` int(11) NOT NULL AUTO_INCREMENT,
   `classes_num` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `classes_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `header_URI` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `monitorID` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `header_URI` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '/img/header01.jpg',
+  `monitor_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`classes_id`, `classes_num`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
