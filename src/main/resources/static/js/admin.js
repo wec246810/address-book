@@ -127,10 +127,6 @@ function addStudent(classesNum) {
         }
 
     });
-
-    $('#savemy').click(function(e){
-        console.log("触发按钮事件。。。")
-        location.reload();
-    });
+    
 
 }
