@@ -97,11 +97,6 @@ public class MyController {
 
 
 
-    @GetMapping("footer")
-    public ModelAndView footer(){
-        ModelAndView footer=new ModelAndView("footer");
-        return footer;
-    }
 
 
 
