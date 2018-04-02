@@ -10,8 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-//            如果是班长，则管理班级成员
-            <student>
+            <student th:if="${imonitor}=='1'">
             <div>
                 <a th:href="@{'admin/admin-detail?classesNum='+${classesNum}}">管理班级成员</a>
             </div>

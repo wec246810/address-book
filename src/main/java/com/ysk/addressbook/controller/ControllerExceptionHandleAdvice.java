@@ -15,22 +15,21 @@ import java.sql.SQLException;
 @Log4j2
 public class ControllerExceptionHandleAdvice {
     private final static Logger logger = LoggerFactory.getLogger(ControllerExceptionHandleAdvice.class);
-
-    @ExceptionHandler
-    public ResultEntity handler(HttpServletResponse res, Exception e) {
-        logger.info("Restful Http请求发生异常...");
-
-        if (res.getStatus() == HttpStatus.BAD_REQUEST.value()) {
-            res.setStatus(HttpStatus.OK.value());
-        }
-        if (e instanceof NullPointerException) {
-            return ResultEntity.NULL_POINT;
-        } else if (e instanceof IllegalArgumentException) {
-            return ResultEntity.PARAM_ERR;
-        } else if (e instanceof SQLException) {
-            return ResultEntity.SQL_EXC;
-        } else {
-            return ResultEntity.SERVER_EXC;
-        }
-    }
+//
+//    @ExceptionHandler
+//    public ResultEntity handler(HttpServletResponse res, Exception e) {
+//        logger.info("Restful Http请求发生异常...");
+//        if (res.getStatus() == HttpStatus.BAD_REQUEST.value()) {
+//            res.setStatus(HttpStatus.OK.value());
+//        }
+//        if (e instanceof NullPointerException) {
+//            return ResultEntity.NULL_POINT;
+//        } else if (e instanceof IllegalArgumentException) {
+//            return ResultEntity.PARAM_ERR;
+//        } else if (e instanceof SQLException) {
+//            return ResultEntity.SQL_EXC;
+//        } else {
+//            return ResultEntity.SERVER_EXC;
+//        }
+//    }
 }
