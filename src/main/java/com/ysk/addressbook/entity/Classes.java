@@ -14,5 +14,5 @@ public class Classes {
     private String classesName;
     private  String headerURI;
     private  String classesURI;
-    private  String monitorID;
+    private  String monitorId;
 }
