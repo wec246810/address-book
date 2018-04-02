@@ -28,8 +28,8 @@
                 <!---->
                 <tr style="text-align: center;" th:id="@{'infoTable'+${classes.getClassesNum()}}">
                     <td style="vertical-align: middle;" th:text="${classes.getClassesNum()}" th:id="@{'classesNum'+${classes.getClassesNum()}}">1419</td>
-                    <td  style="vertical-align: middle;" th:text="${classes.getClassesName()}" th:id="@{'classesName'+${classes.getClassesName()}}">1419班</td>
-                    <td style="vertical-align: middle;" th:text="${classes.getMonitorID()}" th:id="@{'monitorID'+${classes.getMonitorID()}}">1462141947</td>
+                    <td  style="vertical-align: middle;" th:text="${classes.getClassesName()}" th:id="@{'classesName'+${classes.getClassesNum()}}">1419班</td>
+                    <td style="vertical-align: middle;" th:text="${classes.getMonitorId()}" th:id="@{'monitorID'+${classes.getClassesNum()}}">1462141947</td>
                     <!--<td style="vertical-align: middle;" th:text="${student.getSex()}" th:id="@{'sex'+${student.getSid()}}">杨尚昆</td>-->
 
                     <td style="vertical-align: middle; width: 400px" id="infoTableOp">
@@ -82,7 +82,8 @@
 
 <script>
     function editClasses(infoTable) {
-        $('#classesNum' + infoTable).attr("contenteditable", true);
+        console.info('#classesName' +infoTable)
+        // $('#classesNum' + infoTable).attr("contenteditable", true);
         $('#classesName' + infoTable).attr("contenteditable", true);
         $('#monitorID' + infoTable).attr("contenteditable", true);
         console.log("editAdminDetailTableend");

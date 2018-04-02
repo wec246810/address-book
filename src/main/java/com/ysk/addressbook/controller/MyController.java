@@ -73,8 +73,8 @@ public class MyController {
     public ModelAndView classesDetail(@RequestParam("classesNum") String classesNum){
         List<Student> students=classesService.getClassesByClassesNum(classesNum);
         Classes classes=classesService.getOneClasses(classesNum);
-        System.out.println(classes.getMonitorID());
-        Student monitor=studentService.getStudentBySID(classes.getMonitorID());
+        System.out.println(classes.getMonitorId());
+        Student monitor=studentService.getStudentBySID(classes.getMonitorId());
         ModelAndView classesDetailMV=new ModelAndView("classes-detail");
         System.out.println(monitor);
         classesDetailMV.addObject("monitor",monitor);

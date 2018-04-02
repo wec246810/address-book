@@ -20,7 +20,7 @@
     </select>
 
     <select id="getOneClasses" resultType="com.ysk.addressbook.entity.Classes">
-        SELECT * FROM classes where classes_num=#{classNum}
+        SELECT * FROM classes where classes_num=#{classesNum}
     </select>
 
     <insert id="addOneClasses">
@@ -32,7 +32,7 @@
     </update>
 
     <delete id="deleteOneClasses" >
-        DELETE FROM classes where classes_num=#{classNum}
+        DELETE FROM classes where classes_num=#{classesNum}
     </delete>
 
 
