@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>班级管理页面</title>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/common.css"/>
     <script src="/js/admin.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
 </head>
 <body/>
@@ -17,36 +19,46 @@
         <h2>班级管理页面</h2>
     </div>
     <div class="row">
-        <table class="table table-striped  table-bordered table-hover table-responsive" >
+        <table class="table table-striped  table-bordered table-hover table-responsive">
             <tr align="center">
                 <th style="text-align: center;">#</th>
                 <th style="text-align: center;">班级</th>
                 <th style="text-align: center;">班长学号</th>
                 <th style="text-align: center;">操作</th>
             </tr>
-            <classes th:each="classes:${classess}" >
+            <classes th:each="classes:${classess}">
                 <!---->
                 <tr style="text-align: center;" th:id="@{'infoTable'+${classes.getClassesNum()}}">
-                    <td style="vertical-align: middle;" th:text="${classes.getClassesNum()}" th:id="@{'classesNum'+${classes.getClassesNum()}}">1419</td>
-                    <td  style="vertical-align: middle;" th:text="${classes.getClassesName()}" th:id="@{'classesName'+${classes.getClassesNum()}}">1419班</td>
-                    <td style="vertical-align: middle;" th:text="${classes.getMonitorId()}" th:id="@{'monitorID'+${classes.getClassesNum()}}">1462141947</td>
+                    <td style="vertical-align: middle;" th:text="${classes.getClassesNum()}"
+                        th:id="@{'classesNum'+${classes.getClassesNum()}}">1419
+                    </td>
+                    <td style="vertical-align: middle;" th:text="${classes.getClassesName()}"
+                        th:id="@{'classesName'+${classes.getClassesNum()}}">1419班
+                    </td>
+                    <td style="vertical-align: middle;" th:text="${classes.getMonitorId()}"
+                        th:id="@{'monitorID'+${classes.getClassesNum()}}">1462141947
+                    </td>
                     <!--<td style="vertical-align: middle;" th:text="${student.getSex()}" th:id="@{'sex'+${student.getSid()}}">杨尚昆</td>-->
 
                     <td style="vertical-align: middle; width: 400px" id="infoTableOp">
-                        <a  class="btn btn-primary" href="javascript:void(0)" th:onclick="'javascript:editClasses(\''+@{${classes.getClassesNum()}}+'\');'">编辑</a>
+                        <a class="btn btn-primary" href="javascript:void(0)"
+                           th:onclick="'javascript:editClasses(\''+@{${classes.getClassesNum()}}+'\');'">编辑</a>
                         &nbsp; &nbsp;
-                        <a class="btn btn-success" href="javascript:void(0)" th:onclick="'javascript:saveClasses(\''+@{${classes.getClassesNum()}}+'\');'">保存</a>
+                        <a class="btn btn-success" href="javascript:void(0)"
+                           th:onclick="'javascript:saveClasses(\''+@{${classes.getClassesNum()}}+'\');'">保存</a>
                         &nbsp; &nbsp;
-                        <a class="btn btn-danger" href="javascript:void(0)" th:onclick="'javascript:deleteClasses(\''+@{${classes.getClassesNum()}}+'\');'">删除</a>
+                        <a class="btn btn-danger" href="javascript:void(0)"
+                           th:onclick="'javascript:deleteClasses(\''+@{${classes.getClassesNum()}}+'\');'">删除</a>
                     </td>
                 </tr>
             </classes>
-            <tr align="center" >
-                <td id="addsid" contenteditable="true"></td>
-                <td id="addname" contenteditable="true"></td>
-                <td id="addsex" contenteditable="true"></td>
+            <tr align="center">
+                <td id="addclassesNum" contenteditable="true"></td>
+                <td id="addclassesName" contenteditable="true"></td>
+                <td id="addmonitorId" contenteditable="true"></td>
                 <td id="">
-                    <a class="btn btn-primary" href="javascript:void(0)" th:onclick="'javascript:addClasses(\''+@{${}}+'\');'">增加</a>
+                    <a class="btn btn-primary" href="javascript:void(0)"
+                       th:onclick="'javascript:addClasses(\''+@{${}}+'\');'">增加</a>
                 </td>
             </tr>
         </table>
@@ -54,22 +66,20 @@
 </div>
 
 
-
-
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
             <div class="modal-body" id="motai">
-                //                加载中...
+                // 加载中...
             </div>
             <div class="modal-footer">
-                <button  class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button  class="btn btn-primary"  id="savemy">保存</button>
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button class="btn btn-primary" id="savemy1">确定</button>
             </div>
         </div>
     </div>
@@ -77,12 +87,14 @@
 </body>
 
 <script src="/js/admin.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
 
 <script>
     function editClasses(infoTable) {
-        console.info('#classesName' +infoTable)
+        console.info('#classesName' + infoTable)
         // $('#classesNum' + infoTable).attr("contenteditable", true);
         $('#classesName' + infoTable).attr("contenteditable", true);
         $('#monitorID' + infoTable).attr("contenteditable", true);
@@ -92,17 +104,17 @@
     //保存班级
     function saveClasses(infoTable) {
         var classes = {
-            sid: $('#classesNum' + infoTable).text(),
-            name: $('#classesName' + infoTable).text(),
-            sex: $('#monitorID' + infoTable).text()
+            classesNum: $('#classesNum' + infoTable).text(),
+            classesName: $('#classesName' + infoTable).text(),
+            monitorId: $('#monitorID' + infoTable).text()
         }
-        console.log(student)
+        console.log(classes)
         $.ajax({
             url: '/admin/classes',
             type: 'put',
             dataType: 'json',
             cache: false,
-            data: JSON.stringify(student),
+            data: JSON.stringify(classes),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 // alert("成功");
@@ -134,14 +146,14 @@
     }
 
     //删除班级
-    function deleteClasses(sid) {
+    function deleteClasses(classesNum) {
         if (confirm("是否确认删除")) {
             $.ajax({
                 url: '/admin/classes',
                 type: 'delete',
                 dataType: 'json',
                 cache: false,
-                data: JSON.stringify({'sid': sid}),
+                data: JSON.stringify({'classesNum': classesNum}),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (data.errCode == 0) {
@@ -164,20 +176,19 @@
 
     //增加班级
     function addClasses(classesNum) {
-        var student = {
-            sid: $('#addclassesNum').text(),
-            name: $('#addclassesName').text(),
-            sex: $('#monitorID').text(),
+        var classes = {
+            classesNum: $('#addclassesNum').text(),
+            classesName: $('#addclassesName').text(),
+            monitorId: $('#addmonitorId').text(),
             // classesNum: classesNum
-
         }
-        console.log(student);
+        console.log(classes);
         $.ajax({
             url: '/admin/classes',
             type: 'post',
             dataType: 'json',
             cache: false,
-            data: JSON.stringify(student),
+            data: JSON.stringify(classes),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 // alert("成功");
@@ -188,19 +199,13 @@
                     console.log("保存成功")
                     $('#motai').html('保存成功')
                     $('#myModal').modal('show');
-                    // alert("添加成功");
-                    // location.reload();
                 } else if (data.errCode == 1) {
                     $('#motai').html('添加失败,请检查你输入的数据！')
                     $('#myModal').modal('show');
-                    // alert("添加失败,请检查你输入的数据！");
                 } else {
                     $('#motai').html('发生未知错误,请重试！')
                     $('#myModal').modal('show');
-                    // alert("发生未知错误,请重试");
                 }
-
-                // location.reload();
             },
             complete: function (data) {
                 // alert("complete");
@@ -208,5 +213,8 @@
         });
 
     }
+    $("#savemy1").click(function () {
+        window.location.reload();
+    });
 </script>
 </html>

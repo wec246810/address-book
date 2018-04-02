@@ -7,6 +7,7 @@ import com.ysk.addressbook.service.ClassesService;
 import com.ysk.addressbook.service.StudentService;
 import com.ysk.addressbook.util.HttpUtils;
 import lombok.extern.log4j.Log4j2;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -80,12 +81,15 @@ public class AdminController {
      * @return
      */
     @PostMapping("classes")
-    public ResultEntity addclasses(@RequestBody Classes classes){
+    @ResponseBody
+    public ResultEntity addClasses(@RequestBody Classes classes){
+        System.out.println(classes);
         try {
             classesService.addOneClasses(classes);
             return ResultEntity.SUCCESS;
         }catch (Exception ex){
-             log.info("添加班级信息出错");
+            System.out.println("添加班级信息出错");
+            ex.printStackTrace();
              return ResultEntity.FAILED;
         }
     }
@@ -108,6 +112,7 @@ public class AdminController {
      * @return
      */
     @PutMapping("classes")
+    @ResponseBody
     public ResultEntity editClasses(@RequestBody Classes classes){
         try {
             classesService.updateOneClasses(classes);
@@ -120,16 +125,18 @@ public class AdminController {
 
     /**
      * 删除班级信息
-     * @param classesNum
+     * @param classes
      * @return
      */
     @DeleteMapping("classes")
-    public ResultEntity deleteClasses(String classesNum){
+    @ResponseBody
+    public ResultEntity deleteClasses(@RequestBody Classes classes){
+        System.out.println(classes.getClassesNum());
         try {
-            classesService.deleteOneClasses(classesNum);
+            classesService.deleteOneClasses(classes.getClassesNum());
             return ResultEntity.SUCCESS;
         }catch (Exception ex){
-            log.info("删除班级信息出错");
+            System.out.println("删除班级信息出错");
             return ResultEntity.FAILED;
         }
     }

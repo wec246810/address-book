@@ -23,12 +23,12 @@
         SELECT * FROM classes where classes_num=#{classesNum}
     </select>
 
-    <insert id="addOneClasses">
-        INSERT INTO classes VALUES(null,#{classesName},#{classesNum},#{headerURI})
+    <insert id="addOneClasses" parameterType="com.ysk.addressbook.entity.Classes">
+        INSERT INTO classes (classes_id,classes_name,classes_num,monitor_id) VALUES(null,#{classesName},#{classesNum},#{monitorId})
     </insert>
 
     <update id="updateOneClasses" parameterType="com.ysk.addressbook.entity.Classes">
-        UPDATE classes set classes_name=#{classesName},classes_num=#{classesNum},header_URI=#{headerURI}
+        UPDATE classes set classes_name=#{classesName},monitor_id=#{monitorId},header_URI=#{headerURI} where classes_num=#{classesNum}
     </update>
 
     <delete id="deleteOneClasses" >
