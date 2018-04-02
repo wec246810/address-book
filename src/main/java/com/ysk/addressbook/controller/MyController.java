@@ -66,12 +66,27 @@ public class MyController {
     }
 
     @GetMapping("index")
-    public ModelAndView index() {
+    public ModelAndView index( HttpServletRequest request) {
         String notice=noticeService.getMyNotice();
         List<Classes> classess= classesService.findAllClasses();
         ModelAndView indexMV=new ModelAndView("index");
+        String imonitor=redis.opsForValue().get(HttpUtils.getCookieByName(request,"token").getValue());
+        if(classess.size()>=1){
+            if(imonitor.equals(classess.get(0).getAdmin())){
+                indexMV.addObject("admin","1");
+            }else {
+                indexMV.addObject("admin","0");
+            }
+            indexMV.addObject("classess",classess);
+        }
+//        log.info("从Redis中取出的imonitor--->"+imonitor);
+//
+//        if(imonitor.equals(classess.get(0).getMonitorId())){
+//            classesDetailMV.addObject("imonitor","1");
+//        }else {
+//            classesDetailMV.addObject("imonitor","0");
+//        }
         indexMV.addObject("notice",notice);
-        indexMV.addObject("classess",classess);
         return indexMV;
     }
 
@@ -87,10 +102,8 @@ public class MyController {
         log.info("从Redis中取出的imonitor--->"+imonitor);
 
         if(imonitor.equals(classes.getMonitorId())){
-            System.out.println("是班长");
             classesDetailMV.addObject("imonitor","1");
         }else {
-            System.out.println("不是班长");
             classesDetailMV.addObject("imonitor","0");
         }
         classesDetailMV.addObject("monitor",monitor);
@@ -110,12 +123,4 @@ public class MyController {
         studentDetailMV.addObject("student",student);
         return studentDetailMV;
     }
-
-
-
-
-
-
-
-
 }

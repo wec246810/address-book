@@ -16,4 +16,5 @@ public class Classes {
     private  String headerURI;
     private  String classesURI;
     private  String monitorId;
+    private String admin;
 }
