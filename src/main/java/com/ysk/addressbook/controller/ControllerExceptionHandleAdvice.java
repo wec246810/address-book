@@ -1,20 +1,11 @@
 package com.ysk.addressbook.controller;
 
-import com.ysk.addressbook.enums.ResultEntity;
 import lombok.extern.log4j.Log4j2;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 
 @RestControllerAdvice
 @Log4j2
 public class ControllerExceptionHandleAdvice {
-    private final static Logger logger = LoggerFactory.getLogger(ControllerExceptionHandleAdvice.class);
 //
 //    @ExceptionHandler
 //    public ResultEntity handler(HttpServletResponse res, Exception e) {

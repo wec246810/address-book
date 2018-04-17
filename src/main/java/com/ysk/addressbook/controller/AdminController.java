@@ -1,5 +1,6 @@
 package com.ysk.addressbook.controller;
 
+import com.ysk.addressbook.annotation.CheckLogin;
 import com.ysk.addressbook.entity.Classes;
 import com.ysk.addressbook.entity.Student;
 import com.ysk.addressbook.enums.ResultEntity;
@@ -7,7 +8,6 @@ import com.ysk.addressbook.service.ClassesService;
 import com.ysk.addressbook.service.StudentService;
 import com.ysk.addressbook.util.HttpUtils;
 import lombok.extern.log4j.Log4j2;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +30,7 @@ public class AdminController {
 
     //所有进行trim处理
     @GetMapping("admin-detail")
+    @CheckLogin
     public ModelAndView adminDetail(@RequestParam("classesNum") String classesNum) {
         //获取本班所有学生
         classesNum = classesNum.trim();
@@ -41,6 +42,7 @@ public class AdminController {
     }
 
     @PostMapping("add-student")
+    @CheckLogin
     @ResponseBody
     public ResultEntity addStudent(@RequestBody Student student) throws Exception {
         if (studentService.getStudentBySID(student.getSid()) != null) {
@@ -57,6 +59,7 @@ public class AdminController {
     }
 
     @DeleteMapping("delete-student")
+    @CheckLogin
     @ResponseBody
     public ResultEntity deleteStudent(@RequestBody Student student) {
         //通过sid删除学生信息
@@ -65,6 +68,7 @@ public class AdminController {
     }
 
     @PutMapping("update-student")
+    @CheckLogin
     @ResponseBody
     public ResultEntity updateStudent(@RequestBody Student student) {
         //更新学生信息
@@ -81,6 +85,7 @@ public class AdminController {
      * @return
      */
     @PostMapping("classes")
+    @CheckLogin
     @ResponseBody
     public ResultEntity addClasses(@RequestBody Classes classes){
         System.out.println(classes);
@@ -99,6 +104,7 @@ public class AdminController {
      * @return
      */
     @GetMapping("classes")
+    @CheckLogin
     public ModelAndView getAllClasses(){
       List<Classes> classes =  classesService.findAllClasses();
         ModelAndView classesMV = new ModelAndView("classes");
@@ -112,6 +118,7 @@ public class AdminController {
      * @return
      */
     @PutMapping("classes")
+    @CheckLogin
     @ResponseBody
     public ResultEntity editClasses(@RequestBody Classes classes){
         try {
@@ -129,6 +136,7 @@ public class AdminController {
      * @return
      */
     @DeleteMapping("classes")
+    @CheckLogin
     @ResponseBody
     public ResultEntity deleteClasses(@RequestBody Classes classes){
         System.out.println(classes.getClassesNum());

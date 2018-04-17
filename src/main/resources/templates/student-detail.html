@@ -17,7 +17,8 @@
     <ss th:if="${studentPosition.getPosition()!=-1}">
         <div class="col-md-1" align="center" style="height: 100%">
             <a th:href="@{'/student-detail?SID='+${studentPosition.getPerStudentSid()}}" >
-                <img src="/img/left_arrow.jpg"/>
+                <!--<img src="/img/left_arrow.jpg"/>-->
+                <input type="button" class="btn btn-success" value="上一个">
             </a>
 
         </div>
@@ -102,18 +103,20 @@
             <a class="btn btn-primary" href="javascript:void(0)" onclick="saveStudentInfo()">保存</a>
             <a class="btn btn-success" href="javascript:void(0)" onclick="editStudentInfo()">编辑</a>
             <br>
+
         </div>
+
         <ss th:if="${studentPosition.getPosition()>=-1}">
-        <ss th:if="${studentPosition.getPosition()!=1}">
-            <div class="col-md-1" align="center">
-                <a th:href="@{'/student-detail?SID='+${studentPosition.getNextStudentSid()}}">
-                    <img src="/img/right_arrow.jpg"  />
-                </a>
+            <ss th:if="${studentPosition.getPosition()!=1}">
+                <div class="col-md-1" align="center">
+                    <a th:href="@{'/student-detail?SID='+${studentPosition.getNextStudentSid()}}">
+                        <!--<img src="/img/right_arrow.jpg"  />-->
+                        <input type="button" class="btn btn-success" value="下一个">
+                    </a>
 
-            </div>
+                </div>
+            </ss>
         </ss>
-        </ss>
-
     </div>
 </div>
 

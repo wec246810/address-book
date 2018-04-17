@@ -1,5 +1,6 @@
 package com.ysk.addressbook.controller;
 
+import com.ysk.addressbook.annotation.CheckLogin;
 import com.ysk.addressbook.entity.Student;
 import com.ysk.addressbook.enums.ResultEntity;
 import com.ysk.addressbook.service.StudentService;
@@ -24,6 +25,7 @@ public class UserController {
     }
 
     @PostMapping("update-info")
+    @CheckLogin
     @ResponseBody
     public ResultEntity updateMyInfo(@RequestBody Student student) {
         studentService.updateStudent(student);
@@ -31,6 +33,7 @@ public class UserController {
     }
 
     @GetMapping("user-detail")
+    @CheckLogin
     public ModelAndView studentDetail(@RequestParam("SID") String SID) {
         Student student = studentService.getStudentBySID(SID);
         ModelAndView studentDetailMV = new ModelAndView("user-detail");

@@ -94,6 +94,7 @@ public class MyController {
 
     //班级详情页面
     @GetMapping("classes-detail")
+    @CheckLogin
     public ModelAndView classesDetail(@RequestParam("classesNum") String classesNum, HttpServletRequest request){
         List<Student> students=classesService.getClassesByClassesNum(classesNum);
         Classes classes=classesService.getOneClasses(classesNum);
@@ -117,6 +118,7 @@ public class MyController {
 
     //学生详情页面
     @GetMapping("student-detail")
+    @CheckLogin
     public ModelAndView studentDetail(@RequestParam("SID") String SID){
         Student student=studentService.getStudentBySID(SID);
        StudentPosition studentPosition= studentService.getStudentPosition(student);
