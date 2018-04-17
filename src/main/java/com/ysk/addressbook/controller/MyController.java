@@ -1,6 +1,6 @@
 package com.ysk.addressbook.controller;
 
-import com.google.common.base.Strings;
+import com.ysk.addressbook.annotation.CheckLogin;
 import com.ysk.addressbook.dto.StudentPosition;
 import com.ysk.addressbook.entity.Classes;
 import com.ysk.addressbook.entity.Student;
@@ -8,6 +8,7 @@ import com.ysk.addressbook.service.ClassesService;
 import com.ysk.addressbook.service.NoticeService;
 import com.ysk.addressbook.service.StudentService;
 import com.ysk.addressbook.service.UserService;
+import com.ysk.addressbook.util.CookieUtil;
 import com.ysk.addressbook.util.HttpUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class MyController {
             //登陆成功,生成token，对应学号，存入redis中
             String token=UUID.randomUUID().toString();
             stringRedisTemplate.opsForValue().set(token,username,24*7, TimeUnit.HOURS);
-            HttpUtils.addCookie(response,"token",token,7*24*3600);
+            CookieUtil.addCookie(response,"token",token,7*24*3600);
             return "redirect:/index";
         } else {
             return "redirect:/login";
@@ -66,6 +67,7 @@ public class MyController {
     }
 
     @GetMapping("index")
+    @CheckLogin
     public ModelAndView index( HttpServletRequest request) {
         String notice=noticeService.getMyNotice();
         List<Classes> classess= classesService.findAllClasses();
