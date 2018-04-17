@@ -17,7 +17,5 @@ public interface  StudentService {
 
     List<Student> findAllStudent();
 
-
-
     StudentPosition getStudentPosition(Student student);
 }

@@ -28,6 +28,12 @@ public class AdminController {
     @Autowired
     private HttpUtils httpUtils;
 
+
+    @GetMapping("index")
+    public ModelAndView adminIndex(){
+        return null;
+    }
+
     //所有进行trim处理
     @GetMapping("admin-detail")
     @CheckLogin
@@ -81,32 +87,34 @@ public class AdminController {
 
     /**
      * 添加班级
+     *
      * @param classes
      * @return
      */
     @PostMapping("classes")
     @CheckLogin
     @ResponseBody
-    public ResultEntity addClasses(@RequestBody Classes classes){
+    public ResultEntity addClasses(@RequestBody Classes classes) {
         System.out.println(classes);
         try {
             classesService.addOneClasses(classes);
             return ResultEntity.SUCCESS;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("添加班级信息出错");
             ex.printStackTrace();
-             return ResultEntity.FAILED;
+            return ResultEntity.FAILED;
         }
     }
 
     /**
      * 获取所有班级
+     *
      * @return
      */
     @GetMapping("classes")
     @CheckLogin
-    public ModelAndView getAllClasses(){
-      List<Classes> classes =  classesService.findAllClasses();
+    public ModelAndView getAllClasses() {
+        List<Classes> classes = classesService.findAllClasses();
         ModelAndView classesMV = new ModelAndView("classes");
         classesMV.addObject("classess", classes);
         return classesMV;
@@ -114,17 +122,18 @@ public class AdminController {
 
     /**
      * 更新班级信息
+     *
      * @param classes
      * @return
      */
     @PutMapping("classes")
     @CheckLogin
     @ResponseBody
-    public ResultEntity editClasses(@RequestBody Classes classes){
+    public ResultEntity editClasses(@RequestBody Classes classes) {
         try {
             classesService.updateOneClasses(classes);
             return ResultEntity.SUCCESS;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             log.info("更新班级信息出错");
             return ResultEntity.FAILED;
         }
@@ -132,18 +141,20 @@ public class AdminController {
 
     /**
      * 删除班级信息
+     *
      * @param classes
      * @return
      */
-    @DeleteMapping("classes")
+
     @CheckLogin
+    @DeleteMapping("classes")
     @ResponseBody
-    public ResultEntity deleteClasses(@RequestBody Classes classes){
+    public ResultEntity deleteClasses(@RequestBody Classes classes) {
         System.out.println(classes.getClassesNum());
         try {
             classesService.deleteOneClasses(classes.getClassesNum());
             return ResultEntity.SUCCESS;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("删除班级信息出错");
             return ResultEntity.FAILED;
         }

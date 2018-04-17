@@ -16,4 +16,9 @@ public class NoticeServiceImpl implements NoticeService {
 
         return noticeDao.getMyNotice();
     }
+
+    @Override
+    public void update(String content) {
+        noticeDao.update(content);
+    }
 }

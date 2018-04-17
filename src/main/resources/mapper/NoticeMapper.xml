@@ -12,6 +12,9 @@
         SELECT content FROM notice
     </select>
 
+    <update id="update">
+        update notice set content=#{content}
+    </update>
 
 </mapper>
 
