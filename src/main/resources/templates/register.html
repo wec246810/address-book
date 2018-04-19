@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>通讯录登录页面</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/common.css"/>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
 </head>
 <body>
-<div style="padding: 100px 100px 10px;" >
+<div style="padding: 100px 100px 10px;">
     <h2 align="center" style="font-family: 楷体">同学录管理系统注册页面</h2>
     <form class="col-md-12" role="form" action="register-user" method="post">
         <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
             <span class="input-group-addon">用户名</span>
             <input type="text" class="form-control" placeholder="请输入学号" name="username">
-        </div><br>
+        </div>
+        <br>
         <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
-            <!--<span class="input-group-addon">用户名</span>-->
-            <input type="text" class="form-control" placeholder="请输入学号" name="username">
-            <input type="button" class="form-control" style="height:32px;width:120px;" value="点击发送验证码" onclick="sendCode(this)" />
-        </div><br>
+            <!---->
+            <input type="text" class="form-control" placeholder="请输入获取到的验证码" name="username">
+            <span class="input-group-addon btn btn-success" id="sendCode">获取验证码</span>
+            <!--<input type="button" class="btn btn-success"  value="点击发送验证码" onclick="sendCode(this)" />-->
+        </div>
+        <br>
         <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
             <span class="input-group-addon">密码</span>
             <input type="password" class="form-control" placeholder="请输入密码" name="password">
-        </div><br>
+        </div>
+        <br>
         <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
             <span class="input-group-addon">再次输入密码</span>
             <input type="password" class="form-control" placeholder="请输入密码" name="password1">
-        </div><br>
+        </div>
+        <br>
         <div class="form-group col-md-4 col-md-offset-4">
             <input type="submit" class="btn btn-success col-md-12" value="提交注册">
         </div>
@@ -37,34 +43,37 @@
     </form>
 </div>
 <script>
-    $(document).ready(function(){
-        $("#login").click(function () {
-            location.href = "login";
-        });
+
+    // $(document).ready(function(){
+    //   //从cookies读取，过期时间，减去现在的时间为剩余多少秒
+    // });
+
+
+    $("#login").click(function () {
+        location.href = "login";
     });
 
-    var clock = '';
-    var nums = 10;
-    var btn;
-    function sendCode(thisBtn)
-    {
-        btn = thisBtn;
-        btn.disabled = true; //将按钮置为不可点击
-        btn.value = nums+'秒后可重新获取';
-        clock = setInterval(doLoop, 1000); //一秒执行一次
-    }
-    function doLoop()
-    {
-        nums--;
-        if(nums > 0){
-            btn.value = nums+'秒后可重新获取';
-        }else{
-            clearInterval(clock); //清除js定时器
-            btn.disabled = false;
-            btn.value = '点击发送验证码';
-            nums = 10; //重置时间
-        }
-    }
+    var wait = 60;
+    $("#sendCode").click(
+        function time(obj) {
+            var date = new Date();
+            date.setTime(date.getTime()+60*1000);//只能这么写，10表示10秒钟
+            $.cookie('send-code', '1', {expires: date});
+            console.log($.cookie('send-code'))
+            if ($.cookie('send-code') ==null) {
+                $("#sendCode").removeAttr("disabled");
+                $("#sendCode").text("获取验证码");
+                wait = 60;
+            } else {
+                $("#sendCode").attr("disabled", "true");
+                $("#sendCode").text(wait + "秒后重试");
+                wait--;
+                setTimeout(function () {     //倒计时方法
+                    time(obj);
+                }, 1000);    //间隔为1s
+            }
+        });
+
 
 </script>
 </body>
