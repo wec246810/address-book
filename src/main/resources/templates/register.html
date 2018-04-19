@@ -35,8 +35,8 @@
         </div>
         <br>
         <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
-            <span class="input-group-addon">再次输入密码</span>
-            <input type="password" class="form-control" placeholder="请输入密码" name="password1">
+            <span class="input-group-addon">密码</span>
+            <input type="password" class="form-control" placeholder="请再次输入密码" name="password1">
         </div>
         <br>
         <div class="form-group col-md-4 col-md-offset-4">
@@ -67,7 +67,6 @@
             // var date = new Date();
             // date.setTime(date.getTime()+60*1000);//只能这么写，10表示10秒钟
             // $.cookie('send-code', '1', {expires: date});
-            console.log($("#sendCode").attr("disabled"))
             if (wait==0) {
                 $("#sendCode").removeAttr("disabled");
                 $("#sendCode").text("获取验证码");

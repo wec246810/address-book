@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -53,18 +52,16 @@ public class UserController {
      * @return
      */
     @PostMapping("check-user")
-    public ModelAndView checkUser(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response) {
+    @ResponseBody
+    public String checkUser(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response) throws IOException {
         User user = userService.getUserByUserName(username);
-        ModelAndView temp = new ModelAndView();
         if (Strings.isNullOrEmpty(username) || Strings.isNullOrEmpty(password)) {
-            temp.addObject("errmsg", "用户名或密码格式不正确");
-            temp.setViewName("error");
-            return temp;
+            return "用户名或密码格式不正确";
         }
         if(user==null){
-            temp.addObject("errmsg", "该用户不存在");
-            temp.setViewName("error");
-            return temp;
+//            temp.addObject("errmsg", "该用户不存在");
+//            temp.setViewName("error");
+            return "该用户不存在";
         }
         if (user.getPassword().equals(MD5Util.getMD5(password))) {
             String token = UUID.randomUUID().toString();
@@ -73,12 +70,12 @@ public class UserController {
             userMap.put(RedisKey.IS_ADMIN, String.valueOf(user.getIsAdmin()));
             redisTemplate.opsForValue().set(token, userMap, 24 * 7, TimeUnit.HOURS);
             CookieUtil.addCookie(response, "token", token, 7 * 24 * 3600);
-            temp.setViewName("index");
-            return temp;
+            response.sendRedirect("index");
+            return null;
         }
-        temp.addObject("errmsg", "用户名或密码错误");
-        temp.setViewName("error");
-        return temp;
+//        temp.addObject("errmsg", "用户名或密码错误");
+//        temp.setViewName("error");
+        return  "用户名或密码错误";
     }
 
 
@@ -88,6 +85,7 @@ public class UserController {
      * @param username
      * @param password
      * @return
+     * TODO: 加上短信验证
      */
     @PostMapping("register-user")
     @ResponseBody

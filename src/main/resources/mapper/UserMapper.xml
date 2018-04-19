@@ -17,11 +17,12 @@
     </delete>
 
     <update id="updateUser" parameterType="com.ysk.addressbook.entity.User">
-        UPDATE user set username=#{userId},username=#{username},password=#{password},permission=#{permission}
+        UPDATE user set username=#{username},password=#{password},permission=#{permission},
+        is_admin=#{isAdmin}
     </update>
 
     <insert id="addUser">
-        INSERT user (username,password) values(#{username},#{password})
+        INSERT user (username,password,phone,email) values(#{username},#{password},#{phone},#{email})
     </insert>
 
     <select id="findAllUser" resultType="com.ysk.addressbook.entity.User">

@@ -10,7 +10,7 @@ import lombok.*;
 public class User {
      private String username;
      private String password;
-     private int isAdmin;
+     private Integer isAdmin;
      private String phone;
      private String email;
 
