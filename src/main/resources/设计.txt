@@ -22,12 +22,9 @@ classes
 
 student
 
-
 数据库增加真实数据
 
-某些按钮管理员可见
-
-班级详情页面
+班级详情页面 进行美化
 
 头像完善一下，http://www.diyiziti.com/
 

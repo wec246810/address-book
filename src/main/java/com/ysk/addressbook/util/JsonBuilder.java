@@ -2,9 +2,6 @@ package com.ysk.addressbook.util;
 
 import com.alibaba.fastjson.JSONObject;
 
-/**
- * Created by lsj on 20/03/2018.
- */
 public class JsonBuilder {
 
     private JSONObject jsonObject;

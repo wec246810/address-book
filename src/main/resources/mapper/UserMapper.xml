@@ -12,16 +12,16 @@
         SELECT * FROM user where username=#{username};
     </select>
 
-    <delete id="deteleUserById" >
-    DELETE from user where userId=#{userId}
+    <delete id="deteleUserById">
+        DELETE from user where userId=#{userId}
     </delete>
 
     <update id="updateUser" parameterType="com.ysk.addressbook.entity.User">
-    UPDATE user set username=#{userId},username=#{username},password=#{password},permission=#{permission}
+        UPDATE user set username=#{userId},username=#{username},password=#{password},permission=#{permission}
     </update>
 
-    <insert id="addUser" >
-    INSERT USER(userId,username,password) values(null,#{username},#{password})
+    <insert id="addUser">
+        INSERT user (username,password) values(#{username},#{password})
     </insert>
 
     <select id="findAllUser" resultType="com.ysk.addressbook.entity.User">

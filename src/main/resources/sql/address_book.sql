@@ -11,7 +11,7 @@
  Target Server Version : 50556
  File Encoding         : 65001
 
- Date: 17/04/2018 20:08:43
+ Date: 19/04/2018 08:47:04
 */
 
 SET NAMES utf8mb4;
@@ -27,32 +27,31 @@ CREATE TABLE `classes`  (
   `classes_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `header_URI` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '/img/header01.jpg',
   `monitor_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `admin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1462141947' COMMENT '管理员id',
   PRIMARY KEY (`classes_id`, `classes_num`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of classes
 -- ----------------------------
-INSERT INTO `classes` VALUES (1, '1401', '1401班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (2, '1402', '1402班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (3, '1403', '1403班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (4, '1404', '1404班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (5, '1405', '1405班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (6, '1406', '1406班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (7, '1407', '1407班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (8, '1408', '1408班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (9, '1409', '1409班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (10, '1410', '1410班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (11, '1411', '1411班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (12, '1412', '1412班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (13, '1413', '1413班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (14, '1414', '1414班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (15, '1415', '1415班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (16, '1416', '1416班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (17, '1417', '1417班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (18, '1418', '1418班', '/img/header01.jpg', '2018141947', '2018141947');
-INSERT INTO `classes` VALUES (19, '1419', '1419班5', '/img/header01.jpg', '2018141947', '2018141947');
+INSERT INTO `classes` VALUES (1, '1401', '1401班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (2, '1402', '1402班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (3, '1403', '1403班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (4, '1404', '1404班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (5, '1405', '1405班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (6, '1406', '1406班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (7, '1407', '1407班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (8, '1408', '1408班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (9, '1409', '1409班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (10, '1410', '1410班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (11, '1411', '1411班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (12, '1412', '1412班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (13, '1413', '1413班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (14, '1414', '1414班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (15, '1415', '1415班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (16, '1416', '1416班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (17, '1417', '1417班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (18, '1418', '1418班', '/img/header01.jpg', '2018141947');
+INSERT INTO `classes` VALUES (19, '1419', '1419班5', '/img/header01.jpg', '2018141947');
 
 -- ----------------------------
 -- Table structure for notice
@@ -933,37 +932,22 @@ INSERT INTO `student` VALUES (9941, 2018141944, '姓名141944', '男', NULL, NUL
 INSERT INTO `student` VALUES (9942, 2018141947, '杨尚昆', '男', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1419', NULL, NULL);
 
 -- ----------------------------
--- Table structure for sys_admin
--- ----------------------------
-DROP TABLE IF EXISTS `sys_admin`;
-CREATE TABLE `sys_admin`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of sys_admin
--- ----------------------------
-INSERT INTO `sys_admin` VALUES (1, '1462141947', '202cb962ac59075b964b07152d234b70');
-
--- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `state` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `is_admin` int(1) NULL DEFAULT -1,
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '2018141947', '202cb962ac59075b964b07152d234b70', '1');
-INSERT INTO `user` VALUES (2, '2018141948', '202cb962ac59075b964b07152d234b70', '1');
+INSERT INTO `user` VALUES (1, '2018141947', '202cb962ac59075b964b07152d234b70', 1);
+INSERT INTO `user` VALUES (2, '2018141948', '202cb962ac59075b964b07152d234b70', 1);
+INSERT INTO `user` VALUES (3, '454', 'b635a0cd1a42ab9209b8bbd168ae27bb', -1);
 
 SET FOREIGN_KEY_CHECKS = 1;
