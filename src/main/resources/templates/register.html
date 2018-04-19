@@ -60,12 +60,15 @@
 
     var wait = 60;
     $("#sendCode").click(
-        function time(obj) {
-            var date = new Date();
-            date.setTime(date.getTime()+60*1000);//只能这么写，10表示10秒钟
-            $.cookie('send-code', '1', {expires: date});
-            console.log($.cookie('send-code'))
-            if ($.cookie('send-code') ==null) {
+        function time(obj,flag) {
+            if( $("#sendCode").attr("disabled")=="disabled"&&flag!=1){
+                return;
+            }
+            // var date = new Date();
+            // date.setTime(date.getTime()+60*1000);//只能这么写，10表示10秒钟
+            // $.cookie('send-code', '1', {expires: date});
+            console.log($("#sendCode").attr("disabled"))
+            if (wait==0) {
                 $("#sendCode").removeAttr("disabled");
                 $("#sendCode").text("获取验证码");
                 wait = 60;
@@ -74,7 +77,7 @@
                 $("#sendCode").text(wait + "秒后重试");
                 wait--;
                 setTimeout(function () {     //倒计时方法
-                    time(obj);
+                    time(obj,1);
                 }, 1000);    //间隔为1s
             }
         });
