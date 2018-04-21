@@ -17,8 +17,8 @@
     </delete>
 
     <update id="updateUser" parameterType="com.ysk.addressbook.entity.User">
-        UPDATE user set username=#{username},password=#{password},permission=#{permission},
-        is_admin=#{isAdmin}
+        UPDATE user set password=#{password},permission=#{permission},
+        is_admin=#{isAdmin} where username=#{username}
     </update>
 
     <insert id="addUser">

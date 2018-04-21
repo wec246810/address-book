@@ -7,6 +7,7 @@ import com.ysk.addressbook.service.StudentService;
 import com.ysk.addressbook.service.UserService;
 import com.ysk.addressbook.util.CookieUtil;
 import com.ysk.addressbook.util.MD5Util;
+import com.ysk.addressbook.util.SMSSender;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,9 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -58,7 +57,7 @@ public class UserController {
         if (Strings.isNullOrEmpty(username) || Strings.isNullOrEmpty(password)) {
             return "用户名或密码格式不正确";
         }
-        if(user==null){
+        if (user == null) {
 //            temp.addObject("errmsg", "该用户不存在");
 //            temp.setViewName("error");
             return "该用户不存在";
@@ -75,7 +74,7 @@ public class UserController {
         }
 //        temp.addObject("errmsg", "用户名或密码错误");
 //        temp.setViewName("error");
-        return  "用户名或密码错误";
+        return "用户名或密码错误";
     }
 
 
@@ -84,21 +83,20 @@ public class UserController {
      *
      * @param username
      * @param password
-     * @return
-     * TODO: 加上短信验证
+     * @return TODO: 加上短信验证
      */
     @PostMapping("register-user")
     @ResponseBody
-    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password,HttpServletResponse response,@RequestParam("password1")String password1) throws IOException {
-        if (Strings.isNullOrEmpty(username) || Strings.isNullOrEmpty(password)|| Strings.isNullOrEmpty(password1)) {
+    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response, @RequestParam("password1") String password1) throws IOException {
+        if (Strings.isNullOrEmpty(username) || Strings.isNullOrEmpty(password) || Strings.isNullOrEmpty(password1)) {
 //            return JsonBuilder.builder().put("errormsg", "用户名或者密码不能为空").put("errorCode", -1).build();
             return "用户名或者密码为空";
         }
-        if(!password.equals(password1)){
+        if (!password.equals(password1)) {
             return "两次输入密码不一致";
         }
-        User user=userService.getUserByUserName(username);
-        if(user!=null){
+        User user = userService.getUserByUserName(username);
+        if (user != null) {
 //            return JsonBuilder.builder().put("errormsg", "该用户名已经存在").put("errorCode", -1).build();
             return "该用户名已经存在";
         }
@@ -110,10 +108,11 @@ public class UserController {
 
     /**
      * 注册页面
+     *
      * @return
      */
     @GetMapping("register")
-    public String register(){
+    public String register() {
         return "register";
     }
 
@@ -126,4 +125,13 @@ public class UserController {
     public String login() {
         return "login";
     }
+
+
+    @GetMapping("test")
+    public void test(@RequestParam("mobile") String mobile) {
+        List<String> list = new ArrayList<>();
+        list.add("2321");
+        SMSSender.send(mobile, list);
+    }
+
 }

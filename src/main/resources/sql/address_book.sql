@@ -11,7 +11,7 @@
  Target Server Version : 50556
  File Encoding         : 65001
 
- Date: 19/04/2018 08:47:04
+ Date: 21/04/2018 15:02:53
 */
 
 SET NAMES utf8mb4;
@@ -940,14 +940,16 @@ CREATE TABLE `user`  (
   `username` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `is_admin` int(1) NULL DEFAULT -1,
+  `phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '2018141947', '202cb962ac59075b964b07152d234b70', 1);
-INSERT INTO `user` VALUES (2, '2018141948', '202cb962ac59075b964b07152d234b70', 1);
-INSERT INTO `user` VALUES (3, '454', 'b635a0cd1a42ab9209b8bbd168ae27bb', -1);
+INSERT INTO `user` VALUES (1, '2018141947', '202cb962ac59075b964b07152d234b70', 1, NULL, NULL);
+INSERT INTO `user` VALUES (2, '2018141948', '202cb962ac59075b964b07152d234b70', 1, NULL, NULL);
+INSERT INTO `user` VALUES (3, '454', 'b635a0cd1a42ab9209b8bbd168ae27bb', -1, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
