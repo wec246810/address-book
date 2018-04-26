@@ -15,6 +15,20 @@
 
 <mapper namespace="com.ysk.addressbook.dao.ClassesDao">
 
+    <sql id="Base_Column_List">
+        classesId,
+        classesNum,
+        classesName,
+        headerURI,
+        monitorId
+    </sql>
+    <resultMap id="BaseResultMap" type="com.ysk.addressbook.entity.Classes">
+        <result column="classesId" property="classesId"/>
+        <result column="classesNum" property="classesNum"/>
+        <result column="classesName" property="classesName"/>
+        <result column="headerURI" property="headerURI"/>
+        <result column="monitorId" property="monitorId"/>
+    </resultMap>
     <select id="findAllClasses" resultType="com.ysk.addressbook.entity.Classes">
         SELECT * FROM classes
     </select>
@@ -39,5 +53,6 @@
     <select id="getClassesByClassesNum" resultType="com.ysk.addressbook.entity.Student">
         SELECT * FROM student where classes_num=#{classesNum} ORDER BY sid ASC
     </select>
+
 
 </mapper>

@@ -5,7 +5,6 @@ import com.ysk.addressbook.entity.Classes;
 import com.ysk.addressbook.entity.Student;
 import com.ysk.addressbook.service.ClassesService;
 import com.ysk.addressbook.service.StudentService;
-import com.ysk.addressbook.util.HttpUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,7 +24,7 @@ import java.util.List;
 @Log4j2
 public class ClassesController {
     @Autowired
-    private RedisTemplate<String,String> redis;
+    private RedisTemplate<String, String> redis;
 
     @Autowired
     private ClassesService classesService;
@@ -35,29 +34,28 @@ public class ClassesController {
 
     /**
      * 班级详情页面
+     *
      * @param classesNum
      * @param request
      * @return
      */
     @GetMapping("classes-detail")
     @CheckLogin
-    public ModelAndView classesDetail(@RequestParam("classesNum") String classesNum, HttpServletRequest request){
-        List<Student> students=classesService.getClassesByClassesNum(classesNum);
-        Classes classes=classesService.getOneClasses(classesNum);
-        if(students==null|students.size()==0||classes==null){
-            log.info("传入的班级信息不正确");
+    public ModelAndView classesDetail(@RequestParam("classesNum") String classesNum, HttpServletRequest request) {
+        List<Student> students = classesService.getClassesByClassesNum(classesNum);
+        Classes classes = classesService.getOneClasses(classesNum);
+        if (students == null | students.size() == 0 || classes == null) {
+            ModelAndView classesDetailMV = new ModelAndView("error");
+            classesDetailMV.addObject("errmsg", "传入的班级信息有误");
+            return classesDetailMV;
         }
-        Student monitor=studentService.getStudentBySID(classes.getMonitorId());
-        ModelAndView classesDetailMV=new ModelAndView("classes-detail");
-        String imonitor=redis.opsForValue().get(HttpUtils.getCookieByName(request,"token").getValue());
-        if(imonitor.equals(classes.getMonitorId())){
-            classesDetailMV.addObject("imonitor","1");
-        }else {
-            classesDetailMV.addObject("imonitor","0");
+        Student monitor = studentService.getStudentBySID(classes.getMonitorId());
+        ModelAndView classesDetailMV = new ModelAndView("classes-detail");
+        if (monitor != null) {
+            classesDetailMV.addObject("monitor", monitor);
         }
-        classesDetailMV.addObject("monitor",monitor);
-        classesDetailMV.addObject("students",students);
-        classesDetailMV.addObject("classesNum",classesNum);
+        classesDetailMV.addObject("students", students);
+        classesDetailMV.addObject("classesNum", classesNum);
         return classesDetailMV;
     }
 }

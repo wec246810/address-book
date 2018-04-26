@@ -3,7 +3,6 @@ package com.ysk.addressbook.intercepter;
 import com.google.common.base.Strings;
 import com.ysk.addressbook.annotation.CheckLogin;
 import com.ysk.addressbook.config.Config;
-import com.ysk.addressbook.service.RetService;
 import com.ysk.addressbook.service.TokenService;
 import com.ysk.addressbook.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
@@ -29,27 +28,24 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (!HandlerMethod.class.isAssignableFrom(handler.getClass())) {
-            log.info("1");
             return true;
         }
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         if (!handlerMethod.hasMethodAnnotation(CheckLogin.class)) {
-            log.info("2");
             return true;
         }
         String token = CookieUtil.getCookie(request, Config.TOKEN);
         if (Strings.isNullOrEmpty(token)) {
-            CommonInterceptor.writeCommonResult(response, RetService.NOT_LOGIN_ERR);
-            log.info("3");
+//            CommonInterceptor.writeCommonResult(response, RetService.NOT_LOGIN_ERR);
+            response.sendRedirect("login");
             return false;
         }
         String uid = tokenService.checkLogin(token);
         if (Strings.isNullOrEmpty(uid)) {
-            CommonInterceptor.writeCommonResult(response, RetService.NOT_LOGIN_ERR);
-            log.info("4");
+//            CommonInterceptor.writeCommonResult(response, RetService.NOT_LOGIN_ERR);
+            response.sendRedirect("login");
             return false;
         }
-        log.info("5");
         return true;
     }
 }

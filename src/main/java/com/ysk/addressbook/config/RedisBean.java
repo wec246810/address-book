@@ -92,4 +92,15 @@ public class RedisBean {
         return template;
     }
 
+    @Bean()
+    public RedisTemplate<String, Map<String, Integer>> hashIntegerRedis(RedisConnectionFactory factory) {
+        RedisTemplate<String, Map<String, Integer>> template = new RedisTemplate<>();
+        template.setConnectionFactory(factory);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+        return template;
+    }
+
 }

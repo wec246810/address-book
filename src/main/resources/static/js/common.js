@@ -24,7 +24,7 @@ function saveStudentInfo() {
         address: $("#student-address").val()
     }
     $.ajax({
-        url: '/user/update-info',
+        url: '/update-info',
         type: 'post',
         dataType: 'json',
         cache: false,

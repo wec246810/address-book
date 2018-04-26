@@ -13,20 +13,20 @@
     <h2 align="center" style="font-family: 楷体">同学录管理系统注册页面</h2>
     <form class="col-md-12" role="form" action="register-user" method="post">
         <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
-            <span class="input-group-addon">手机号码</span>
-            <input type="text" class="form-control" placeholder="请输入手机号码" name="phone">
+            <span class="input-group-addon">用户名</span>
+            <input type="text" class="form-control" placeholder="请输入学号" name="username" id="username">
+        </div>
+        <br>
+        <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
+            <span class="input-group-addon">邮箱账号</span>
+            <input type="text" class="form-control" placeholder="请输入邮箱号码" name="email" id="toEmail">
         </div>
         <br>
         <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
             <!---->
-            <input type="text" class="form-control" placeholder="请输入获取到的验证码" name="code">
+            <input type="text" class="form-control" placeholder="请输入邮箱中获取到的验证码" name="code" id="send-email">
             <span class="input-group-addon btn btn-success" id="sendCode">获取验证码</span>
             <!--<input type="button" class="btn btn-success"  value="点击发送验证码" onclick="sendCode(this)" />-->
-        </div>
-        <br>
-        <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
-            <span class="input-group-addon">用户名</span>
-            <input type="text" class="form-control" placeholder="请输入学号" name="username">
         </div>
         <br>
         <div class="form-group input-group input-group-lg col-md-4 col-md-offset-4">
@@ -43,7 +43,7 @@
             <input type="submit" class="btn btn-success col-md-12" value="提交注册">
         </div>
         <div class="form-group col-md-4 col-md-offset-4">
-            <input type="button" class="btn btn-danger col-md-12" value="返回登录页面" id="login" onc>
+            <input type="button" class="btn btn-danger col-md-12" value="返回登录页面" id="login">
         </div>
     </form>
 </div>
@@ -59,15 +59,20 @@
     });
 
     var wait = 60;
+    $("#sendCode").click(function () {
+        if ($("#sendCode").attr("disabled") == "disabled") {
+            return;
+        }
+        $.post("get-code", {"username": $("#username").val(), "toEmail": $("#toEmail").val()}, function (data) {
+            alert(data.errMsg);
+        })
+    });
     $("#sendCode").click(
-        function time(obj,flag) {
-            if( $("#sendCode").attr("disabled")=="disabled"&&flag!=1){
+        function time(obj, flag) {
+            if ($("#sendCode").attr("disabled") == "disabled" && flag != 1) {
                 return;
             }
-            // var date = new Date();
-            // date.setTime(date.getTime()+60*1000);//只能这么写，10表示10秒钟
-            // $.cookie('send-code', '1', {expires: date});
-            if (wait==0) {
+            if (wait == 0) {
                 $("#sendCode").removeAttr("disabled");
                 $("#sendCode").text("获取验证码");
                 wait = 60;
@@ -76,10 +81,11 @@
                 $("#sendCode").text(wait + "秒后重试");
                 wait--;
                 setTimeout(function () {     //倒计时方法
-                    time(obj,1);
+                    time(obj, 1);
                 }, 1000);    //间隔为1s
             }
-        });
+        }
+    );
 
 
 </script>

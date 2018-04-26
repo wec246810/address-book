@@ -132,17 +132,17 @@
             <!--<artifactId>spring-session-data-redis</artifactId>-->
         <!--</dependency>-->
         <!--在每次修改程序类后可以不重新启动应用-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>springloaded</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>springloaded</artifactId>-->
+        <!--</dependency>-->
         <!--在每次修改静态页面文件时不重新启动应用-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖boot项目的项目如果想要使用devtools，需要重新引入 -->
-            <optional>true</optional>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-devtools</artifactId>-->
+            <!--&lt;!&ndash; optional=true,依赖不会传递，该项目依赖devtools；之后依赖boot项目的项目如果想要使用devtools，需要重新引入 &ndash;&gt;-->
+            <!--<optional>true</optional>-->
+        <!--</dependency>-->
 
 
         <!-- https://mvnrepository.com/artifact/com.github.theborakompanioni/thymeleaf-extras-shiro -->
@@ -176,6 +176,17 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/me.ghui/Fruit -->
+        <dependency>
+            <groupId>me.ghui</groupId>
+            <artifactId>Fruit</artifactId>
+            <version>1.0.4</version>
         </dependency>
 
     </dependencies>

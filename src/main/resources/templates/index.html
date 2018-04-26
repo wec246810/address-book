@@ -86,34 +86,34 @@
             </div>
             <ss th:if="${classesStat.count}==${classesStat.size}">
                 <ss th:if="${admin}=='1'">
-                <div th:if=" ${classesStat.index%3==0}">
-                    <div class="col-md-2 col-md-offset-3">
+                <div th:if=" ${classesStat.count%3!=0}">
+                    <div class="col-md-2  col-md-offset-3">
                         <div align="center">
-                            <a th:href="@{'admin/classes'}" target="_blank">
+                            <a th:href="@{'admin/classes-manage'}" target="_blank">
                                 <div>
                                     <img src="img/plus.png" th:src="@{'img/plus.png'}" th:alt="${'班级管理'}"
                                          th:class="${'img-circle img-responsive'}">
                                 </div>
                                 <br>
                                 <div>
-                                    <scan>班级管理</scan>
+                                    <scan>管理员入口</scan>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
                 <classes >
-                    <div th:if="${classesStat.index%3!=0}"  >
+                    <div th:if="${classesStat.count%3==0}"  >
                         <div class="col-md-2">
                             <div align="center">
-                                <a th:href="@{'admin/classes'}" target="_blank">
+                                <a th:href="@{'admin/classes-manage'}" target="_blank">
                                     <div>
                                         <img src="img/plus.png" th:src="@{'img/plus.png'}" th:alt="${'班级管理'}"
                                              th:class="${'img-circle img-responsive'}">
                                     </div>
                                     <br>
                                     <div>
-                                        <scan>班级管理</scan>
+                                        <scan>管理员入口</scan>
                                     </div>
                                 </a>
                             </div>

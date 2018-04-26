@@ -48,10 +48,10 @@ public class AdminController {
     @PostMapping("setNotice")
     public JSON  setNotice(@RequestParam("content") String content){
         if(Strings.isNullOrEmpty(content)){
-            return JsonBuilder.builder().put("errmsg","公告更新失败").put("errCode",-1).build();
+            return JsonBuilder.builder().put("errMsg","公告更新失败").put("errCode",-1).build();
         }
         noticeService.update(content);
-        return JsonBuilder.builder().put("errmsg","公告更新成功").put("errCode",1).build();
+        return JsonBuilder.builder().put("errMsg","公告更新成功").put("errCode",1).build();
     }
 
     /**
@@ -82,7 +82,7 @@ public class AdminController {
     @ResponseBody
     public JSON addStudent(@RequestBody Student student) throws Exception {
         if (studentService.getStudentBySID(student.getSid()) != null) {
-            return JsonBuilder.builder().put("errmsg","该学生信息已存在").put("errorCode",-1).build();
+            return JsonBuilder.builder().put("errMsg","该学生信息已存在").put("errCode",-1).build();
         }
         //下载并存储头像
         //采用异步的方式
@@ -91,7 +91,7 @@ public class AdminController {
         student.setHeaderURI("/img/" + student.getSid() + ".png");
         System.out.println(student.getHeaderURI());
         studentService.addStudent(student);
-        return JsonBuilder.builder().put("errmsg","添加学生信息完成").put("errorCode",1).build();
+        return JsonBuilder.builder().put("errMsg","添加学生信息完成").put("errCode",1).build();
     }
 
 
@@ -106,7 +106,7 @@ public class AdminController {
     public JSON deleteStudent(@RequestBody Student student) {
         //通过sid删除学生信息
         studentService.deleteStudentBySID(student.getSid());
-        return JsonBuilder.builder().put("errmsg","删除学生信息完成").put("errorCode",1).build();
+        return JsonBuilder.builder().put("errMsg","删除学生信息完成").put("errCode",1).build();
     }
 
     /**
@@ -121,12 +121,13 @@ public class AdminController {
         //更新学生信息
         Student s = studentService.getStudentBySID(student.getSid());
         if(s==null){
-            return JsonBuilder.builder().put("errmsg","该学生不存在").put("errorCode",-1).build();
+            return JsonBuilder.builder().put("errMsg","该学生不存在").put("errCode",-1).build();
         }
         s.setName(student.getName());
         s.setSex(student.getSex());
+        System.out.println(student);
         studentService.updateStudent(s);
-        return JsonBuilder.builder().put("errmsg","更新学生信息成功").put("errorCode",1).build();
+        return JsonBuilder.builder().put("errMsg","更新学生信息成功").put("errCode",1).build();
     }
 
 
@@ -158,11 +159,11 @@ public class AdminController {
         System.out.println(classes);
         try {
             classesService.addOneClasses(classes);
-            return JsonBuilder.builder().put("errmsg","添加班级成功").put("errorCode",1).build();
+            return JsonBuilder.builder().put("errMsg","添加班级成功").put("errCode",1).build();
         } catch (Exception ex) {
             System.out.println("添加班级信息出错");
             ex.printStackTrace();
-            return JsonBuilder.builder().put("errmsg","添加班级出错").put("errorCode",-1).build();
+            return JsonBuilder.builder().put("errMsg","添加班级出错").put("errCode",-1).build();
         }
     }
 
@@ -172,16 +173,16 @@ public class AdminController {
      * @param classes
      * @return
      */
-    @PutMapping("classes")
+    @PutMapping("/classes")
     @CheckLogin
     @ResponseBody
     public JSON editClasses(@RequestBody Classes classes) {
         try {
             classesService.updateOneClasses(classes);
-            return JsonBuilder.builder().put("errmsg","班级信息保存成功").put("errorCode",1).build();
+            return JsonBuilder.builder().put("errMsg","班级信息保存成功").put("errCode",1).build();
         } catch (Exception ex) {
             log.info("更新班级信息出错");
-            return JsonBuilder.builder().put("errmsg","班级信息保存失败").put("errorCode",-1).build();
+            return JsonBuilder.builder().put("errMsg","班级信息保存失败").put("errCode",-1).build();
         }
     }
 
@@ -199,10 +200,10 @@ public class AdminController {
         System.out.println(classes.getClassesNum());
         try {
             classesService.deleteOneClasses(classes.getClassesNum());
-            return JsonBuilder.builder().put("errmsg","删除班级完成").put("errorCode",1).build();
+            return JsonBuilder.builder().put("errMsg","删除班级完成").put("errCode",1).build();
         } catch (Exception ex) {
             System.out.println("删除班级信息出错");
-            return JsonBuilder.builder().put("errmsg","删除班级出错").put("errorCode",-1).build();
+            return JsonBuilder.builder().put("errMsg","删除班级出错").put("errCode",-1).build();
         }
     }
 }

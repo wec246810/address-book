@@ -15,30 +15,29 @@
 <!--List<Student> findAllStudent();-->
 <mapper namespace="com.ysk.addressbook.dao.StudentDao">
     <select id="getStudentBySID" resultType="com.ysk.addressbook.entity.Student">
-    SELECT * FROM student where sid=#{sid}
+        SELECT * FROM student where sid=#{sid}
     </select>
 
     <update id="updateStudent">
         update student
-        set name=#{name},sex=#{sex},address=#{address},hobby=#{hobby},favorite_people=#{favoritePeople},favorite_food=#{favoriteFood},favorite_fruit=#{favoriteFruit},favorite_words=#{favoriteWords},qq=#{qq},tel=#{tel},email=#{email}
-        <if test='classesNum!=""'>
+        set
+        name=#{name},sex=#{sex},age=#{age},address=#{address},hobby=#{hobby},favorite_people=#{favoritePeople},favorite_food=#{favoriteFood},favorite_fruit=#{favoriteFruit},favorite_words=#{favoriteWords},qq=#{qq},tel=#{tel},email=#{email}
             ,classes_num=#{classesNum}
-        </if>
         where sid=#{sid}
     </update>
 
     <delete id="deleteStudentBySID">
-    delete from student where sid=#{sid}
+        delete from student where sid=#{sid}
     </delete>
 
-   <insert id="addStudent">
-    insert into student(id,sid,name,sex,classes_num,header_URI) values(null,#{sid},#{name},#{sex},#{classesNum},#{headerURI})
-   </insert>
+    <insert id="addStudent">
+        insert into student(id,sid,name,sex,classes_num,header_URI)
+        values(null,#{sid},#{name},#{sex},#{classesNum},#{headerURI})
+    </insert>
 
     <select id="findAllStudent" resultType="com.ysk.addressbook.entity.Student">
         SELECT * FROM student ORDER BY sid ASC
     </select>
-
 
 
 </mapper>

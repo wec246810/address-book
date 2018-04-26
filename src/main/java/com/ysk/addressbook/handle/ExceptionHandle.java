@@ -1,6 +1,7 @@
 package com.ysk.addressbook.handle;
 
-import com.ysk.addressbook.enums.ResultEntity;
+import com.alibaba.fastjson.JSON;
+import com.ysk.addressbook.util.JsonBuilder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 public class ExceptionHandle {
     @ExceptionHandler(Exception.class)
-    public ResultEntity handleException(Exception e) {
+    public JSON handleException(Exception e) {
         e.printStackTrace();
-        return ResultEntity.FAILED;
+        return JsonBuilder.builder().put("errMsg","出现异常").put("errCode",-1).build();
     }
 }

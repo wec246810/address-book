@@ -41,6 +41,8 @@ public class UserController {
 
     @Autowired
     private RedisTemplate<String, Map<String, String>> redisTemplate;
+    @Autowired
+    private RedisTemplate<String,String> stringRedis;
 
     /**
      * 检查用户名和密码
@@ -87,13 +89,17 @@ public class UserController {
      */
     @PostMapping("register-user")
     @ResponseBody
-    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response, @RequestParam("password1") String password1) throws IOException {
-        if (Strings.isNullOrEmpty(username) || Strings.isNullOrEmpty(password) || Strings.isNullOrEmpty(password1)) {
+    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password,@RequestParam("code")String code, HttpServletResponse response, @RequestParam("password1") String password1) throws IOException {
+        if (Strings.isNullOrEmpty(username) || Strings.isNullOrEmpty(password) || Strings.isNullOrEmpty(password1)||Strings.isNullOrEmpty(code)) {
 //            return JsonBuilder.builder().put("errormsg", "用户名或者密码不能为空").put("errorCode", -1).build();
-            return "用户名或者密码为空";
+            return "请将所有需要填的内容补全";
         }
         if (!password.equals(password1)) {
             return "两次输入密码不一致";
+        }
+        String redisCode=stringRedis.opsForValue().get(RedisKey.USER_CODE_PREFIX+username);
+        if(Strings.isNullOrEmpty(redisCode)||!code.equals(redisCode)){
+            return "验证码不正确";
         }
         User user = userService.getUserByUserName(username);
         if (user != null) {

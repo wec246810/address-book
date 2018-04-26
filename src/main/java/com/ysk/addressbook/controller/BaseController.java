@@ -65,14 +65,19 @@ public class BaseController {
     public ModelAndView index(HttpServletRequest request) {
         String notice=noticeService.getMyNotice();
         List<Classes> classess= classesService.findAllClasses();
+        ModelAndView indexMV=new ModelAndView("index");
         if(Strings.isNullOrEmpty(notice)||classess.size()==0||classess==null){
             log.info("主页信息获取异常-->"+notice+" " +classess);
+            indexMV=new ModelAndView("error");
+            indexMV.addObject("errmsg","主页信息获取异常");
+            return indexMV;
         }
-        ModelAndView indexMV=new ModelAndView("index");
-
        Map<String,String> userMap = hashStringRedis.opsForValue().get(CookieUtil.getCookie(request, Config.TOKEN));
         if(userMap==null){
             log.info("用户未登陆或登陆已失效");
+            indexMV=new ModelAndView("error");
+            indexMV.addObject("用户未登陆或登陆已失效","主页信息获取异常");
+            return indexMV;
         }
         indexMV.addObject("classess",classess);
         indexMV.addObject("notice",notice);

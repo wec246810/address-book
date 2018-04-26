@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" />
     <!--表格编辑-->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <link href="css/common.css" rel="stylesheet"/>
+    <link href="/css/common.css" rel="stylesheet"/>
     <script src="/js/common.js"></script>
 </head>
 <body/>
@@ -28,7 +28,9 @@
     <div class="row">
         <div class="col-md-7 col-md-offset-2" align="center" >
             <div>
-                <img src="/img/header01.jpg" th:src="@{${student.getHeaderURI()}}" class="img-circle img-responsive">
+                <img src="/img/header01.jpg" th:src="@{${student.getHeaderURI()}}" class="img-circle img-responsive"
+                     style="width: 400px;height: 400px"
+                >
             </div>
             <br>
             <div>
@@ -36,7 +38,7 @@
                 <tr class="active">
                     <td>学号:</td>
                     <!--th:placeholder="${student.getSid()!=''?student.getSid():'填写内容'}"-->
-                    <td><input type="text" placeholder="填写内容" placeholder="填写内容" th:value="${student.getSid()}"   class="no-border no-padding" style="outline: none" id="student-sid"  disabled="disabled"></td>
+                    <td><input type="text" placeholder="填写内容"  th:value="${student.getSid()}"   class="no-border no-padding" style="outline: none" id="student-sid"  disabled="disabled"></td>
                 </tr>
                 <tr class="success">
                     <td >姓名:</td>
@@ -100,8 +102,11 @@
                 </tr>
             </table>
             </div>
-            <a class="btn btn-primary" href="javascript:void(0)" onclick="saveStudentInfo()">保存</a>
-            <a class="btn btn-success" href="javascript:void(0)" onclick="editStudentInfo()">编辑</a>
+            <student th:if="${isSelf}=='1'">
+                <a class="btn btn-primary" href="javascript:void(0)" onclick="saveStudentInfo()">保存</a>
+                <a class="btn btn-success" href="javascript:void(0)" onclick="editStudentInfo()">编辑</a>
+            </student>
+
             <br>
 
         </div>

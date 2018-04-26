@@ -7,7 +7,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -27,11 +26,10 @@ public class TestController {
         for (int i = 1; i < 45; i++) {
             for (int j = 1401; j < 1420; j++) {
                 if(i<10){
-                    student.setSid((2018 + "") + (j + "") + ("0" + i));
+                    student.setSid((1462 + "") + (j + "") + ("0" + i));
                 }else {
-                    student.setSid((2018 + "") + (j + "") + ("" + i));
+                    student.setSid((1462 + "") + (j + "") + ("" + i));
                 }
-
                 student.setName("姓名" + j + i);
                 student.setSex("男");
                 student.setClassesNum(j + "");

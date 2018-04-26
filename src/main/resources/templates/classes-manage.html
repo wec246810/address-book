@@ -49,6 +49,10 @@
                         &nbsp; &nbsp;
                         <a class="btn btn-danger" href="javascript:void(0)"
                            th:onclick="'javascript:deleteClasses(\''+@{${classes.getClassesNum()}}+'\');'">删除</a>
+                        &nbsp; &nbsp;
+                        <a class="btn btn-danger"  th:href="'/admin/classes-student-manage?classesNum='+${classes.getClassesNum()}">
+                           <!--href="/admin/classes-student-manage?classesNum="+"${classes.getClassesNum()}"-->
+                         学生管理</a>
                     </td>
                 </tr>
             </classes>
@@ -95,7 +99,6 @@
 <script>
     function editClasses(infoTable) {
         console.info('#classesName' + infoTable)
-        // $('#classesNum' + infoTable).attr("contenteditable", true);
         $('#classesName' + infoTable).attr("contenteditable", true);
         $('#monitorID' + infoTable).attr("contenteditable", true);
         console.log("editAdminDetailTableend");
@@ -108,7 +111,12 @@
             classesName: $('#classesName' + infoTable).text(),
             monitorId: $('#monitorID' + infoTable).text()
         }
-        console.log(classes)
+        // JSON.stringify(classes)
+        // $.post("/admin/save/classes","application/json; charset=utf-8",JSON.stringify(classes), function (data) {
+        //     $('#motai').html(data.errMsg);
+        //     $('#myModal').modal('show');
+        // });
+
         $.ajax({
             url: '/admin/classes',
             type: 'put',
@@ -117,30 +125,9 @@
             data: JSON.stringify(classes),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                // alert("成功");
-                // var str = data.username + data.age + data.job;
-                // $("#result").html(str);
-                if (data.errCode == 0) {
-                    // alert("修改成功");
-                    $('#motai').html('修改成功！')
-                    $('#myModal').modal('show');
-                    // location.reload();
-                } else if (data.errCode == 1) {
-                    $('#motai').html('改失败，请检查输入的数据！')
-                    $('#myModal').modal('show');
-                    // alert("修改失败，请检查输入的数据！");
-                } else {
-                    $('#motai').html('发生未知错误,请重试！')
-                    $('#myModal').modal('show');
-                    // alert("发生未知错误,请重试");
-                }
-
-                // location.reload();
-            },
-            complete: function (data) {
-                // alert("complete");
+                $('#motai').html(data.errMsg);
+                $('#myModal').modal('show');
             }
-
         });
         $("#infoTable").attr("contenteditable", false);
     }
@@ -148,6 +135,13 @@
     //删除班级
     function deleteClasses(classesNum) {
         if (confirm("是否确认删除")) {
+
+            // $.delete("/admin/classes",JSON.stringify({'classesNum': classesNum}), function (data) {
+            //     $('#motai').html(data.errMsg)
+            //     $('#myModal').modal('show');
+            // });
+
+
             $.ajax({
                 url: '/admin/classes',
                 type: 'delete',
@@ -156,20 +150,9 @@
                 data: JSON.stringify({'classesNum': classesNum}),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    if (data.errCode == 0) {
-                        $('#motai').html('删除成功！')
-                        $('#myModal').modal('show');
-                        // location.reload();
-                    } else if (data.errCode == 1) {
-                        $('#motai').html('删除失败！')
-                        $('#myModal').modal('show');
-                        // alert("删除失败！");
-                    } else {
-                        $('#motai').html('发生未知错误,请重试!')
-                        $('#myModal').modal('show');
-                        // alert("发生未知错误,请重试");
-                    }
-                },
+                    $('#motai').html(data.errMsg);
+                    $('#myModal').modal('show');
+                }
             });
         }
     }
@@ -183,6 +166,13 @@
             // classesNum: classesNum
         }
         console.log(classes);
+
+        // $.post("/admin/classes",JSON.stringify(classes), function (data) {
+        //     $('#motai').html(data.errMsg)
+        //     $('#myModal').modal('show');
+        // });
+
+
         $.ajax({
             url: '/admin/classes',
             type: 'post',
@@ -191,24 +181,8 @@
             data: JSON.stringify(classes),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                // alert("成功");
-                // var str = data.username + data.age + data.job;
-                // $("#result").html(str);
-                console.log(data)
-                if (data.errCode == 0) {
-                    console.log("保存成功")
-                    $('#motai').html('保存成功')
-                    $('#myModal').modal('show');
-                } else if (data.errCode == 1) {
-                    $('#motai').html('添加失败,请检查你输入的数据！')
-                    $('#myModal').modal('show');
-                } else {
-                    $('#motai').html('发生未知错误,请重试！')
-                    $('#myModal').modal('show');
-                }
-            },
-            complete: function (data) {
-                // alert("complete");
+                $('#motai').html(data.errMsg);
+                $('#myModal').modal('show');
             }
         });
 

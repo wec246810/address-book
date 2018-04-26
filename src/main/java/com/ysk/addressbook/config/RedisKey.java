@@ -11,4 +11,6 @@ public class RedisKey {
 
     public static final String IS_ADMIN="is_admin";
 
+    public static final String USER_CODE_PREFIX="user_code_";
+
 }
