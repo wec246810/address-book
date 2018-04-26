@@ -178,7 +178,10 @@ public class AdminController {
     @ResponseBody
     public JSON editClasses(@RequestBody Classes classes) {
         try {
-            classesService.updateOneClasses(classes);
+            Classes classes1= classesService.getOneClasses(classes.getClassesNum());
+            classes1.setClassesName(classes.getClassesName());
+            classes1.setMonitorId(classes.getMonitorId());
+            classesService.updateOneClasses(classes1);
             return JsonBuilder.builder().put("errMsg","班级信息保存成功").put("errCode",1).build();
         } catch (Exception ex) {
             log.info("更新班级信息出错");

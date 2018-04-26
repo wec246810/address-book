@@ -12,7 +12,7 @@
 <body/>
 <!--<div class="container">-->
 <!--<div class="container">-->
-<!--<div class="row">-->
+<!--<div class="row">//-->
 
 <div class="col-md-12">
     <div class="col-md-6 col-md-offset-3">
@@ -24,13 +24,16 @@
             </ol>
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="http://via.placeholder.com/700x200" alt="First slide" style="width: 100%">
+<!--//                    <img src="http://via.placeholder.com/700x200" alt="First slide" style="width: 100%">-->
+                    <img src="/img/banner1.jpg" alt="First slide" style="width: 100%">
                 </div>
                 <div class="item">
-                    <img src="http://via.placeholder.com/700x200" alt="Second slide" style="width: 100%">
+<!--//                    <img src="http://via.placeholder.com/700x200" alt="Second slide" style="width: 100%">-->
+                    <img src="/img/banner2.jpeg" alt="First slide" style="width: 100%">
                 </div>
                 <div class="item">
-                    <img src="http://via.placeholder.com/700x200" alt="Third slide" style="width: 100%">
+<!--//                    <img src="http://via.placeholder.com/700x200" alt="Third slide" style="width: 100%">-->
+                    <img src="/img/banner3.jpg" alt="First slide" style="width: 100%">
                 </div>
             </div>
 
@@ -55,7 +58,7 @@
                     <div align="center">
                         <a th:href="@{'classes-detail?classesNum='+${classes.getClassesNum()}}" target="_blank">
                             <div>
-                                <img src="img/header02.jpg" th:src="@{${classes.getHeaderURI()}}" th:alt="${'班级头像'}"
+                                <img src="/img/class.jpg" th:src="@{${classes.getHeaderURI()}}" th:alt="${'班级头像'}"
                                      th:class="${'img-circle img-responsive'}">
                             </div>
                             <br>
@@ -72,7 +75,7 @@
                     <div align="center">
                         <a th:href="@{'classes-detail?classesNum='+${classes.getClassesNum()}}" target="_blank">
                             <div>
-                                <img src="img/header02.jpg" th:src="@{${classes.getHeaderURI()}}" th:alt="${'班级头像'}"
+                                <img src="/img/class.jpg" th:src="@{${classes.getHeaderURI()}}" th:alt="${'班级头像'}"
                                      th:class="${'img-circle img-responsive'}">
                             </div>
                             <br>
